@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Data
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios") // Nombre de la tabla para usuarios
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,32 +25,32 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Identificador único del usuario
 
     @Column(nullable = false)
-    private String nome;
+    private String nombre; // Nombre completo del usuario
 
     @Column(nullable = false, unique = true)
-    private String cpf;
+    private String cpf; // Documento de identidad personal (CPF)
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String email; // Dirección de correo electrónico del usuario
 
     @Column(nullable = false)
-    private String senha;
+    private String contrasena; // Contraseña para el acceso al sistema
 
     @Column(nullable = false)
-    private LocalDate dataNascimento;
+    private LocalDate fechaNacimiento; // Fecha de nacimiento del usuario
 
     @Column(nullable = false)
-    private String telefone;
+    private String telefone; // Número de teléfono del usuario
 
-    public Usuario(String nome, String cpf, String email, String senha, LocalDate dataNascimento, String telefone) {
-        this.nome = nome;
+    public Usuario(String nombre, String cpf, String email, String contrasena, LocalDate fechaNacimiento, String telefone) {
+        this.nombre = nombre;
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
+        this.contrasena = contrasena;
+        this.fechaNacimiento = fechaNacimiento;
         this.telefone = telefone;
     }
 }

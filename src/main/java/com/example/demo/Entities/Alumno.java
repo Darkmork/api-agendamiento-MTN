@@ -12,33 +12,33 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//criando atributos da classe Paciente
+// Definiendo los atributos de la clase Alumno
 @Data
 @Entity
-@Table(name = "Paciente")
+@Table(name = "Alumno")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paciente {
+public class Alumno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String nome; // Nombre del alumno
+
+    @Column(name = "numero_estudiante", nullable = false, unique = true)
+    private String numeroEstudiante; // Número de identificación único del estudiante
 
     @Column(nullable = false, unique = true)
-    private String cpf;
-
-    @Column(nullable = false, unique = true)
-    private String email;
+    private String email; // Correo electrónico del alumno
 
     @Column(nullable = false)
-    private String telefone;
+    private String telefone; // Número de teléfono del alumno
 
     @Column(nullable = false)
-    private boolean ativo = true;
+    private boolean ativo = true; // Estado de actividad del alumno (activo/inactivo)
 
 }

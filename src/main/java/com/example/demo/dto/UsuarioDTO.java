@@ -8,29 +8,31 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+// DTO para la transferencia de datos de Usuario.
+// Contiene validaciones para los campos.
 @Data
 @NoArgsConstructor
 public class UsuarioDTO {
 
     private Long id;
 
-    @NotBlank(message = "O nome é obrigatório")
-    private String nome;
+    @NotBlank(message = "El nombre es obligatorio")
+    private String nombre; // Nombre del usuario
 
-    @NotBlank(message = "O CPF é obrigatório")
-    @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
-    private String cpf;
+    @NotBlank(message = "El CPF es obligatorio")
+    @Size(min = 11, max = 11, message = "El CPF debe tener 11 caracteres")
+    private String cpf; // CPF del usuario
 
-    @Email(message = "E-mail inválido")
-    @NotBlank(message = "O e-mail é obrigatório")
-    private String email;
+    @Email(message = "Correo electrónico inválido")
+    @NotBlank(message = "El correo electrónico es obligatorio")
+    private String email; // Email del usuario
 
-    @NotBlank(message = "A senha é obrigatória")
-    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres")
-    private String senha;
+    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
+    private String contrasena; // Contraseña del usuario
 
-    private LocalDate dataNascimento;
+    private LocalDate fechaNacimiento; // Fecha de nacimiento del usuario
 
-    @NotBlank(message = "O telefone é obrigatório")
-    private String telefone;
+    @NotBlank(message = "El teléfono es obligatorio")
+    private String telefone; // Teléfono del usuario
 }

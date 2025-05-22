@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import com.example.demo.Entities.Usuario;
 import com.example.demo.dto.UsuarioDTO;
 
+// Mapper para convertir entre la entidad Usuario y UsuarioDTO.
+// MapStruct se encarga de las asignaciones de campos con nombres coincidentes.
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
     UsuarioDTO toDTO(Usuario usuario);

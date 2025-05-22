@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// Servicio para la lógica de negocio relacionada con los Usuarios.
+// Se encarga de la interacción entre el controlador y el repositorio de usuarios.
 @Service
 public class UsuarioService {
 

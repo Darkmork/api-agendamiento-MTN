@@ -17,33 +17,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// Define la entidad Entrevista, que representa la tabla Entrevistas en la base de datos.
+// Almacena información sobre las entrevistas programadas entre alumnos y profesores.
 @Data
 @Entity
-@Table(name = "Consultas")
+@Table(name = "Entrevistas")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Consulta {
+public class Entrevista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Identificador único de la entrevista
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "paciente_id", nullable = false)
-    private Paciente paciente;
+    @JoinColumn(name = "alumno_id", nullable = false)
+    private Alumno alumno; // Alumno participante en la entrevista
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medico_id", nullable = false)
-    private Medico medico;
+    @JoinColumn(name = "profesor_id", nullable = false)
+    private Profesor profesor; // Profesor participante en la entrevista
 
     @Column(name = "data_hora", nullable = false)
-    private LocalDateTime dataHora;
+    private LocalDateTime dataHora; // Fecha y hora de la entrevista
 
     @Column(nullable = false)
-    private String status;
+    private String status; // Estado actual de la entrevista (e.g., programada, completada, cancelada)
 
     @Column(columnDefinition = "TEXT")
-    private String observacoes;
+    private String observacoes; // Observaciones o notas adicionales sobre la entrevista
 }

@@ -1,7 +1,5 @@
 package com.example.demo.Entities;
 
-import java.time.LocalTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,29 +12,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// Define la entidad Materia, que representa la tabla Materia en la base de datos.
+// Contiene los atributos Id y nome.
 @Data
 @Entity
-@Table(name = "Disponibildade")
+@Table(name = "Materia")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+public class Materia {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id; // Identificador único de la materia
 
-public class Disponibilidade {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-
-   @Column(nullable = false)
-   private Long medicoId;
-
-   @Column(nullable = false)
-   private String diaDaSemana;
-
-   @Column(nullable = false)
-   private LocalTime horarioInicio;
-
-   @Column(nullable = false)
-   private LocalTime horarioFim;
-
+    @Column(nullable = false, unique = true)
+    private String nome; // Nombre de la materia
 }
