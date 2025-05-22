@@ -1,126 +1,128 @@
-# 🏥 API de Agendamento de Consultas Médicas
+# 🏫 API de Gestión Escolar
 
-Este é um projeto avaliativo da disciplina **Programação Orientada a Objetos em Java**, com o objetivo de desenvolver uma API REST utilizando Spring Boot para o gerenciamento de agendamentos de consultas em uma clínica médica.
+Este es un proyecto evaluativo de la disciplina **Programación Orientada a Objetos en Java**, con el objetivo de desarrollar una API REST utilizando Spring Boot para la gestión de un sistema escolar.
 
 ## 🎯 Objetivo
 
-Permitir que pacientes agendem consultas médicas, que médicos visualizem suas agendas e que a clínica gerencie a disponibilidade de horários com base em especialidades e regras de negócio pré-definidas.
+Permitir que alumnos puedan programar entrevistas con profesores, que los profesores puedan visualizar sus horarios, y que la institución educativa gestione la disponibilidad de horarios y asignaturas.
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
+## ⚙️ Tecnologías Utilizadas
 
 - Java 17+
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- Banco de Dados (PostgreSQL)
+- Banco de Datos (PostgreSQL)
 - Maven
 
 ---
 
-## 🗃️ Entidades Principais
+## 🗃️ Entidades Principales
 
-- **Paciente**: nome, CPF, telefone, email.
-- **Médico**: nome, CRM, especialidade.
-- **Especialidade**: ex: Cardiologia, Pediatria.
-- **Consulta**: paciente, médico, data/hora, status, observações.
-- **Disponibilidade**: médico, dia da semana, horário de início e fim.
-
----
-
-## 🔐 Regras de Negócio
-
-- Agendamento só é permitido:
-  - Se o médico estiver disponível naquele horário.
-  - Com data/hora futura.
-- Cancelamentos só são aceitos com **no mínimo 24 horas de antecedência**.
-- Um médico não pode ser removido se tiver consultas futuras.
-- Um paciente não pode ser excluído se tiver consultas agendadas.
+- **Alumno**: nombre, numeroEstudiante, email, teléfono.
+- **Profesor**: nombre, identificacionProfesor, materiaId.
+- **Materia**: nombre.
+- **Entrevista**: alumno, profesor, fechaHora, status, observaciones.
+- **DisponibilidadProfesor**: profesor, diaDeSemana, horarioInicio, horarioFin.
 
 ---
 
-## 🔁 Endpoints Principais
+## 🔐 Reglas de Negocio
 
-### 📌 Pacientes
-
-- `POST /pacientes` – Cadastrar paciente.
-- `GET /pacientes` – Listar pacientes.
-- `GET /pacientes/{id}` – Buscar paciente.
-- `PUT /pacientes/{id}` – Atualizar paciente.
-- `DELETE /pacientes/{id}` – Remover paciente.
-
-### 🧑‍⚕️ Médicos
-
-- `POST /medicos` – Cadastrar médico.
-- `GET /medicos` – Listar médicos (filtros por especialidade/disponibilidade).
-- `GET /medicos/{id}` – Buscar médico.
-- `PUT /medicos/{id}` – Atualizar médico.
-- `DELETE /medicos/{id}` – Remover médico.
-
-### 📅 Consultas
-
-- `POST /consultas` – Agendar nova consulta.
-- `GET /consultas` – Listar consultas (filtros por médico, paciente, status).
-- `GET /consultas/{id}` – Buscar consulta.
-- `PATCH /consultas/{id}/status` – Atualizar status.
-- `DELETE /consultas/{id}` – Cancelar consulta.
-
-### 🩺 Especialidades
-
-- `POST /especialidades` – Cadastrar especialidade.
-- `GET /especialidades` – Listar especialidades.
-- `GET /especialidades/{id}` – Buscar especialidade.
-- `PUT /especialidades/{id}` – Atualizar especialidade.
-- `DELETE /especialidades/{id}` – Remover especialidade.
-
-### ⏰ Disponibilidade
-
-- `POST /medicos/{medicoId}/disponibilidades` – Registrar disponibilidade.
-- `GET /medicos/{medicoId}/disponibilidades` – Listar disponibilidades.
-- `DELETE /disponibilidades/{id}` – Remover disponibilidade.
+- La programación de entrevistas solo se permite:
+  - Si el profesor está disponible en ese horario.
+  - Con fecha/hora futura.
+- Las cancelaciones de entrevistas solo se aceptan con **un mínimo de 24 horas de anticipación**.
+- Un profesor no puede ser eliminado si tiene entrevistas futuras programadas.
+- Un alumno no puede ser eliminado si tiene entrevistas programadas.
 
 ---
 
-## 🧪 Como Executar o Projeto
+## 🔁 Endpoints Principales
 
-1. Clone o repositório:
+### 📌 Alumnos
+
+- `POST /api/alumnos` – Registrar un nuevo alumno.
+- `GET /api/alumnos` – Listar todos los alumnos.
+- `GET /api/alumnos/{id}` – Buscar un alumno por su ID.
+- `PUT /api/alumnos/{id}` – Actualizar la información de un alumno (si se implementa).
+- `DELETE /api/alumnos/{id}` – Eliminar un alumno.
+
+### 🧑‍🏫 Profesores
+
+- `POST /api/profesores` – Registrar un nuevo profesor.
+- `GET /api/profesores` – Listar todos los profesores (filtros por materia/disponibilidad).
+- `GET /api/profesores/{id}` – Buscar un profesor por su ID.
+- `PUT /api/profesores/{id}` – Actualizar la información de un profesor (si se implementa).
+- `DELETE /api/profesores/{id}` – Eliminar un profesor.
+
+### 📅 Entrevistas
+
+- `POST /api/entrevistas` – Programar una nueva entrevista.
+- `GET /api/entrevistas` – Listar entrevistas (filtros por profesor, alumno, estado).
+- `GET /api/entrevistas/{id}` – Buscar una entrevista por su ID.
+- `PATCH /api/entrevistas/{id}/status` – Actualizar el estado de una entrevista.
+- `DELETE /api/entrevistas/{id}` – Cancelar una entrevista.
+
+### 📚 Materias
+
+- `POST /api/materias` – Registrar una nueva materia.
+- `GET /api/materias` – Listar todas las materias.
+- `GET /api/materias/{id}` – Buscar una materia por su ID.
+- `PUT /api/materias/{id}` – Actualizar una materia (si se implementa).
+- `DELETE /api/materias/{id}` – Eliminar una materia.
+
+### ⏰ Disponibilidad de Profesores
+
+- `POST /api/profesores/{profesorId}/disponibilidades` – Registrar la disponibilidad de un profesor.
+- `GET /api/profesores/{profesorId}/disponibilidades` – Listar las disponibilidades de un profesor.
+- `DELETE /api/disponibilidades/{id}` – Eliminar un registro de disponibilidad.
+
+---
+
+## 🧪 Cómo Ejecutar el Proyecto
+
+1. Clona el repositorio:
 
 ```bash
-  git clone https://github.com/gbrogio/api-agendamento-consultas-medicas
+  git clone https://github.com/gbrogio/api-agendamento-consultas-medicas 
 ```
+(Nota: El enlace del repositorio original se mantiene, se asume que el código fuente está en este mismo repositorio.)
 
-2. Acesse a pasta do projeto:
+2. Accede a la carpeta del proyecto:
 
 ```bash
-  cd api-agendamento-consultas-medicas
+  cd nombre-del-directorio-del-proyecto 
 ```
+(Reemplaza `nombre-del-directorio-del-proyecto` con el nombre real del directorio si es diferente)
 
-3. (OPCIONAL) Caso tenha docker rode o banco de dados:
-```
+3. (OPCIONAL) Si tienes Docker, ejecuta la base de datos:
+```bash
   docker-compose up
 ```
 
-ou crie um banco de dados PostgreSQL com as seguintes propriedades:
-USUÁRIO: postgres
-SENHA: password
-NOME DO BANCO: agenconsul
+o crea una base de datos PostgreSQL con las siguientes propiedades:
+USUARIO: postgres
+CONTRASEÑA: password
+NOMBRE DE LA BASE DE DATOS: gestionEscolar
 
-4. Compile e rode o projeto com o Maven:
+4. Compila y ejecuta el proyecto con Maven:
 
 ```bash
   mvn spring-boot:run
 ```
 
-5. Acesse o Swagger em:
+5. Accede a la documentación de Swagger en:
 
 ```bash
   http://localhost:8080/docs
 ```
 
-## 👨‍🏫 Informações Acadêmicas
+## 👨‍🏫 Información Académica
 
-**Disciplina:** Programação Orientada a Objetos em Java\
-**Projeto Avaliativo:** API para Agendamento de Consultas Médicas\
+**Disciplina:** Programación Orientada a Objetos en Java\
+**Proyecto Avaliativo:** API para Gestión Escolar\
 **Alunos:** Antônio Neto, Guilherme Brogio, Lucas Gabriel, Matheus Guilherme, Leonardo Ribeiro\
 **Professor:** Fabrício

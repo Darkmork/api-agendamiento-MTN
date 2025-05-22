@@ -31,25 +31,26 @@ public class DisponibilidadProfesorController { // Class name updated
     @Autowired
     private DisponibilidadProfesorService disponibilidadProfesorService; // Service updated
 
-    @Operation(summary = "Registrar disponibilidad de profesor", description = "Crea un nuevo registro de disponibilidad para un profesor específico.") // @Operation updated
+    @Operation(summary = "Registrar disponibilidad de profesor", description = "Crea un nuevo registro de disponibilidad para un profesor específico.")
     @PostMapping
     public ResponseEntity<ApiResponse<DisponibilidadProfesorDTO>> registrarDisponibilidad(
-            @PathVariable Long profesorId, // Path variable updated
-            @RequestBody @Valid DisponibilidadProfesorDTO disponibilidadDTO) { // DTO type updated
+            @PathVariable Long profesorId,
+            @RequestBody @Valid DisponibilidadProfesorDTO disponibilidadDTO) {
         try {
-            disponibilidadDTO.setProfesorId(profesorId); // Set profesorId from path variable
-            DisponibilidadProfesorDTO disponibilidadSalva = disponibilidadProfesorService.registrarDisponibilidade(
-                    disponibilidadDTO); // Service call updated
+            // Asegurando que el profesorId del path se usa para la lógica del DTO
+            // y que el DTO es el único argumento para el servicio.
+            disponibilidadDTO.setProfesorId(profesorId); 
+            DisponibilidadProfesorDTO disponibilidadSalva = disponibilidadProfesorService.registrarDisponibilidad(disponibilidadDTO);
             ApiResponse<DisponibilidadProfesorDTO> response = new ApiResponse<>(disponibilidadSalva);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
         } catch (IllegalArgumentException e) {
-            ErrorResponse errorResponse = new ErrorResponse("Error del usuario", e.getMessage()); // Error message translated
+            ErrorResponse errorResponse = new ErrorResponse("Error del usuario", e.getMessage());
             ApiResponse<DisponibilidadProfesorDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.badRequest().body(response);
 
         } catch (Exception e) {
-            ErrorResponse errorResponse = new ErrorResponse("Fallo del sistema", e.getMessage()); // Error message translated
+            ErrorResponse errorResponse = new ErrorResponse("Fallo del sistema", e.getMessage());
             ApiResponse<DisponibilidadProfesorDTO> response = new ApiResponse<>(errorResponse);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

@@ -27,7 +27,7 @@ public class Alumno {
     private Long id;
 
     @Column(nullable = false)
-    private String nome; // Nombre del alumno
+    private String nombre; // Nombre del alumno - corrected field name
 
     @Column(name = "numero_estudiante", nullable = false, unique = true)
     private String numeroEstudiante; // Número de identificación único del estudiante

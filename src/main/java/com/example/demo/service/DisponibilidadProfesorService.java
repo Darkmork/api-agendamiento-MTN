@@ -36,6 +36,6 @@ public class DisponibilidadProfesorService { // Class name updated
 
     // Elimina un registro de disponibilidad por su ID.
     public void removerDisponibilidade(Long id) { // Parameter name changed to lowercase 'id' for consistency
-        disponibilidadeProfesorRepository.deleteById(id);
+        disponibilidadProfesorRepository.deleteById(id); // Ensured correct repository field name
     }
 }

@@ -16,7 +16,7 @@ public class AlumnoDTO { // Class name changed
 
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
-    private String nome;
+    private String nombre; // Field name corrected to 'nombre'
 
     @NotBlank(message = "El número de estudiante es obligatorio") // Validation message translated
     @Size(min = 5, max = 20, message = "El número de estudiante debe tener entre 5 y 20 caracteres") // Constraints updated

@@ -31,7 +31,7 @@ public class Profesor {
     private Long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String nombre; // Corregido de 'nome' a 'nombre'
 
     /*
      * @Column(nullable = false) private LocalDate dataNascimento;

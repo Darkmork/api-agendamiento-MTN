@@ -12,19 +12,19 @@ import com.example.demo.dto.EntrevistaDTO;   // Updated import
 @Mapper(componentModel = "spring")
 public interface EntrevistaMapper { // Interface name updated
 
-    @Mapping(source = "alumno.id", target = "alumnoId")         // Mapping updated
-    @Mapping(source = "profesor.id", target = "profesorId")       // Mapping updated
-    @Mapping(source = "alumno.nome", target = "nombreAlumno")   // Mapping updated
-    @Mapping(source = "profesor.nome", target = "nombreProfesor") // Mapping updated
-    EntrevistaDTO toDTO(Entrevista entrevista); // Method signature updated
+    @Mapping(source = "alumno.id", target = "alumnoId")
+    @Mapping(source = "profesor.id", target = "profesorId")
+    @Mapping(source = "alumno.nombre", target = "nombreAlumno")   // Corrected from "alumno.nome" to "alumno.nombre"
+    @Mapping(source = "profesor.nombre", target = "nombreProfesor") // Corrected from "profesor.nome" to "profesor.nombre"
+    EntrevistaDTO toDTO(Entrevista entrevista);
 
-    @Mapping(target = "alumno.id", source = "alumnoId")         // Mapping updated
-    @Mapping(target = "profesor.id", source = "profesorId")       // Mapping updated
+    @Mapping(target = "alumno.id", source = "alumnoId")
+    @Mapping(target = "profesor.id", source = "profesorId")
     // Note: Mapping for nombreAlumno and nombreProfesor back to entity fields is not needed
     // as these are typically derived/read-only in DTO or set directly if the entity structure allows.
     // Assuming Entrevista entity does not have nombreAlumno/nombreProfesor fields directly,
     // but rather Alumno and Profesor objects.
-    Entrevista toEntity(EntrevistaDTO entrevistaDTO); // Method signature updated
+    Entrevista toEntity(EntrevistaDTO entrevistaDTO);
 
     List<EntrevistaDTO> toDTOList(List<Entrevista> entrevistas); // Method signature updated
 }

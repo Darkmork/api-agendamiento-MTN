@@ -150,16 +150,17 @@ public class EntrevistaService { // Class name updated
      * @return EntrevistaDTO actualizada.
      */
     @Transactional
-    public EntrevistaDTO actualizarStatus(Long id, String nuevoStatus) {
-        if (!STATUS_PROGRAMADA.equals(novoStatus) && !STATUS_CANCELADA.equals(novoStatus) // Status constants updated
-                && !STATUS_COMPLETADA.equals(novoStatus)) {
-            throw new IllegalArgumentException("Estado inválido. Use: programada, cancelada o completada"); // Error message translated
+    public EntrevistaDTO actualizarStatus(Long id, String nuevoStatus) { // Parameter is 'nuevoStatus'
+        // Using 'nuevoStatus' in the condition
+        if (!STATUS_PROGRAMADA.equals(nuevoStatus) && !STATUS_CANCELADA.equals(nuevoStatus) 
+                && !STATUS_COMPLETADA.equals(nuevoStatus)) {
+            throw new IllegalArgumentException("Estado inválido. Use: programada, cancelada o completada");
         }
 
-        Entrevista entrevista = entrevistaRepository.findById(id) // Type updated
-                .orElseThrow(() -> new IllegalArgumentException("Entrevista no encontrada")); // Error message translated
+        Entrevista entrevista = entrevistaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Entrevista no encontrada"));
 
-        entrevista.setStatus(nuevoStatus);
+        entrevista.setStatus(nuevoStatus); // Using 'nuevoStatus' to set status
 
         return entrevistaMapper.toDTO(entrevistaRepository.save(entrevista));
     }
