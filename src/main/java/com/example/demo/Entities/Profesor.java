@@ -1,5 +1,7 @@
 package com.example.demo.Entities;
 
+//import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,15 +14,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//criando atributos da classe Paciente
+// Este fragmento de código es la entidad Profesor, que representa la tabla profesor en la base de datos
+// Posee los atributos id, nombre, identificadorProfesor y materiaId, que se mapean a las columnas de la tabla
+
 @Data
 @Entity
-@Table(name = "Paciente")
+@Table(name = "profesor")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paciente {
+public class Profesor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,16 +33,13 @@ public class Paciente {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
-    private String cpf;
+    /*
+     * @Column(nullable = false) private LocalDate dataNascimento;
+     */
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String identificadorProfesor;
 
-    @Column(nullable = false)
-    private String telefone;
-
-    @Column(nullable = false)
-    private boolean ativo = true;
-
+    @Column(name = "materia_id", nullable = false)
+    private Long materiaId;
 }

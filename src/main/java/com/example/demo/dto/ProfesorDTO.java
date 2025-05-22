@@ -9,16 +9,16 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Class feita para a validação dos atributos da classe Médico
+// Clase para la validación de los atributos de la clase Profesor
 
 @Data
 @NoArgsConstructor
-public class MedicoDTO {
+public class ProfesorDTO {
 
     private Long id;
 
-    @NotBlank(message = "O nome é obrigatório")
-    @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     private String nome;
 
     /*
@@ -31,11 +31,11 @@ public class MedicoDTO {
      * LocalDate dataNascimento;
      */
 
-    @NotBlank(message = "O CRM é obrigatório")
-    @Size(min = 5, max = 10, message = "O CRM deve ter entre 5 e 10 caracteres")
-    private String crm;
+    @NotBlank(message = "El identificador del profesor es obligatorio")
+    @Size(min = 5, max = 10, message = "El identificador del profesor debe tener entre 5 y 10 caracteres")
+    private String identificadorProfesor;
 
-    @NotBlank(message = "A especialidade é obrigatória")
-    @Size(min = 3, max = 50, message = "A especialidade deve ter entre 3 e 50 caracteres")
-    private String especialidadeId;
+    @NotBlank(message = "La materia es obligatoria")
+    @Size(min = 3, max = 50, message = "La materia debe tener entre 3 y 50 caracteres")
+    private String materiaId;
 }

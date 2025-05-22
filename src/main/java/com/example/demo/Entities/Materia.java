@@ -14,12 +14,12 @@ import lombok.Setter;
 
 @Data
 @Entity
-@Table(name = "Especialidade")
+@Table(name = "materia")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Especialidade {
+public class Materia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

@@ -5,12 +5,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// Clase DTO para la validación de los atributos de la Materia
 @Data
 @NoArgsConstructor
-public class EspecialidadeDTO {
+public class MateriaDTO {
     private Long id;
 
-    @NotBlank(message = "O nome é obrigatório")
-    @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres")
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 50 caracteres")
     private String nome;
 }
